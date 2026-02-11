@@ -36,7 +36,7 @@
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="flex-grow">
                     <label class="block text-sm font-medium text-slate-400 mb-2">Full Name or Online Alias</label>
-                    <input type="text" id="targetName" placeholder="e.g. John Doe or @username" 
+                    <input type="text" id="targetName" placeholder="e.g. John Doe" 
                            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 outline-none transition">
                 </div>
                 <div class="flex-grow">
@@ -51,48 +51,36 @@
                     </button>
                 </div>
             </div>
-            <p class="text-xs text-slate-500 mt-4">
-                Note: This tool only accesses publicly indexed web data. Ensure your research complies with privacy laws and ethics.
-            </p>
+        </div>
+
+        <!-- Status Message -->
+        <div id="statusMsg" class="hidden mb-6 p-4 rounded-xl bg-blue-900/30 border border-blue-500/50 text-blue-200 text-center animate-pulse">
+            Connecting to Gemini Intelligence...
         </div>
 
         <!-- Results Section -->
         <div id="resultsContainer" class="hidden space-y-8">
-            
-            <!-- AI Analysis Tabs -->
             <div class="flex flex-wrap gap-2 mb-4">
-                <button onclick="runAIFeature('bio')" class="bg-indigo-900/40 hover:bg-indigo-800/60 border border-indigo-500/30 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition">
-                    ✨ Generate Bio
-                </button>
-                <button onclick="runAIFeature('sentiment')" class="bg-indigo-900/40 hover:bg-indigo-800/60 border border-indigo-500/30 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition">
-                    ✨ Sentiment Scan
-                </button>
-                <button onclick="runAIFeature('risk')" class="bg-red-900/20 hover:bg-red-900/40 border border-red-500/30 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition text-red-200">
-                    ✨ Risk Audit
-                </button>
+                <button onclick="runAIFeature('bio')" class="bg-indigo-900/40 hover:bg-indigo-800/60 border border-indigo-500/30 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition">✨ Generate Bio</button>
+                <button onclick="runAIFeature('sentiment')" class="bg-indigo-900/40 hover:bg-indigo-800/60 border border-indigo-500/30 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition">✨ Sentiment Scan</button>
+                <button onclick="runAIFeature('risk')" class="bg-red-900/20 hover:bg-red-900/40 border border-red-500/30 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition text-red-200">✨ Risk Audit</button>
             </div>
 
-            <!-- Summary Card -->
             <div class="glass p-8 rounded-3xl" id="contentCard">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold flex items-center gap-2">
+                    <h2 class="text-2xl font-bold flex items-center gap-2 text-white">
                         <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         Intelligence Summary
                     </h2>
                     <div id="aiLoader" class="hidden text-indigo-400 text-sm font-medium animate-pulse">✨ AI is processing...</div>
                 </div>
-                <div id="summaryText" class="prose prose-invert max-w-none text-slate-300 leading-relaxed">
-                    <!-- AI Content Here -->
-                </div>
+                <div id="summaryText" class="prose prose-invert max-w-none text-slate-300 leading-relaxed"></div>
             </div>
 
-            <!-- Sources Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="glass p-8 rounded-3xl">
                     <h3 class="text-xl font-bold mb-4 text-indigo-300">Found Sources</h3>
-                    <ul id="sourcesList" class="space-y-3">
-                        <!-- Sources Here -->
-                    </ul>
+                    <ul id="sourcesList" class="space-y-3"></ul>
                 </div>
                 <div class="glass p-8 rounded-3xl">
                     <h3 class="text-xl font-bold mb-4 text-emerald-300">Quick Actions</h3>
@@ -101,16 +89,11 @@
                             <span>Export Intelligence PDF</span>
                             <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                         </button>
-                        <button id="copyBtn" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl text-left flex items-center justify-between group">
-                            <span>Copy to Clipboard</span>
-                            <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Initial Placeholder -->
         <div id="placeholder" class="text-center py-20 opacity-30">
             <svg class="w-20 h-20 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             <p class="text-xl">Enter a name above to begin intelligence collection</p>
@@ -118,7 +101,7 @@
     </div>
 
     <script>
-        const apiKey = AIzaSyCk_jksM5pubHzns9uUiLjEMRlBLKec87s; // Handled by environment
+        const apiKey = AIzaSyCk_jksM5pubHzns9uUiLjEMRlBLKec87s; // Will be injected by environment
         const model = "gemini-2.5-flash-preview-09-2025";
         
         const searchBtn = document.getElementById('searchBtn');
@@ -130,172 +113,115 @@
         const summaryText = document.getElementById('summaryText');
         const sourcesList = document.getElementById('sourcesList');
         const placeholder = document.getElementById('placeholder');
-        const copyBtn = document.getElementById('copyBtn');
         const aiLoader = document.getElementById('aiLoader');
         const contentCard = document.getElementById('contentCard');
+        const statusMsg = document.getElementById('statusMsg');
 
         let rawIntelligence = "";
 
-        // Exponential Backoff Fetch
-        async function fetchWithRetry(url, options, retries = 5, backoff = 1000) {
-            try {
-                const response = await fetch(url, options);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                return await response.json();
-            } catch (error) {
-                if (retries > 0) {
-                    await new Promise(resolve => setTimeout(resolve, backoff));
-                    return fetchWithRetry(url, options, retries - 1, backoff * 2);
-                }
-                throw error;
+        async function callGemini(payload) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || `HTTP ${response.status}`);
             }
+            return await response.json();
         }
 
         async function collectInfo() {
             const name = targetName.value.trim();
             const context = targetContext.value.trim();
-
             if (!name) return;
 
             searchBtn.disabled = true;
             loader.classList.remove('hidden');
-            btnText.textContent = "Collecting...";
-            
-            const prompt = `Perform an OSINT (Open Source Intelligence) search for: ${name}. 
-            Context provided: ${context}.
-            Identify publicly available information including:
-            1. Identity and Online Aliases.
-            2. Professional background (LinkedIn, Company bios).
-            3. Social media presence.
-            4. Notable achievements or mentions.
-            
-            Format the output with Markdown. Structure it into sections. Be concise but thorough.`;
+            btnText.textContent = "Analyzing...";
+            statusMsg.classList.remove('hidden');
+            statusMsg.textContent = "Attempting Grounded Search...";
+
+            const prompt = `Perform an OSINT search for: ${name}. Context: ${context}. Find career, social media, and public mentions. Format in Markdown.`;
 
             try {
-                const data = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
+                let data;
+                try {
+                    // Try with Google Search Tool first
+                    data = await callGemini({
                         contents: [{ parts: [{ text: prompt }] }],
                         tools: [{ "google_search": {} }]
-                    })
-                });
+                    });
+                } catch (searchError) {
+                    console.warn("Search tool failed (likely 403), falling back to internal knowledge:", searchError);
+                    statusMsg.textContent = "Search tool restricted. Falling back to internal AI knowledge...";
+                    // Fallback: Standard generation without tools
+                    data = await callGemini({
+                        contents: [{ parts: [{ text: prompt + " (Use your internal training data to provide details if you know this person)" }] }]
+                    });
+                }
 
-                const result = data.candidates?.[0];
-                rawIntelligence = result?.content?.parts?.[0]?.text || "No data found.";
-                const groundingAttributions = result?.groundingMetadata?.groundingAttributions || [];
-
-                renderMarkdown(rawIntelligence);
-                
-                sourcesList.innerHTML = '';
-                if (groundingAttributions.length > 0) {
-                    groundingAttributions.forEach(attr => {
+                if (data.candidates && data.candidates[0]) {
+                    rawIntelligence = data.candidates[0].content.parts[0].text;
+                    const grounding = data.candidates[0].groundingMetadata?.groundingAttributions || [];
+                    
+                    renderMarkdown(rawIntelligence);
+                    sourcesList.innerHTML = grounding.length ? '' : '<li class="text-slate-500 italic text-sm">No external links available in fallback mode.</li>';
+                    
+                    grounding.forEach(attr => {
                         if (attr.web) {
                             const li = document.createElement('li');
-                            li.innerHTML = `
-                                <a href="${attr.web.uri}" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-2 truncate">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                    ${attr.web.title || attr.web.uri}
-                                </a>
-                            `;
+                            li.innerHTML = `<a href="${attr.web.uri}" target="_blank" class="text-indigo-400 hover:underline text-sm truncate block">${attr.web.title || attr.web.uri}</a>`;
                             sourcesList.appendChild(li);
                         }
                     });
-                } else {
-                    sourcesList.innerHTML = '<li class="text-slate-500 text-sm">No specific direct links extracted.</li>';
+
+                    placeholder.classList.add('hidden');
+                    resultsContainer.classList.remove('hidden');
                 }
-
-                placeholder.classList.add('hidden');
-                resultsContainer.classList.remove('hidden');
-
-            } catch (error) {
-                console.error(error);
-                summaryText.innerHTML = `<p class="text-red-400">Error: Intelligence collection failed. Please try again later.</p>`;
+            } catch (err) {
+                console.error(err);
+                statusMsg.textContent = `Error: ${err.message}. Ensure your API key is correct and you have access to the model.`;
+                statusMsg.classList.add('bg-red-900/40', 'border-red-500', 'text-red-200');
             } finally {
                 searchBtn.disabled = false;
                 loader.classList.add('hidden');
                 btnText.textContent = "Search Profiles";
-            }
-        }
-
-        async function runAIFeature(type) {
-            if (!rawIntelligence) return;
-
-            aiLoader.classList.remove('hidden');
-            contentCard.classList.add('ai-active');
-
-            let instruction = "";
-            switch(type) {
-                case 'bio':
-                    instruction = "Based on the intelligence provided, write a professional 3rd person biography (LinkedIn style). Highlight their career journey and key expertise.";
-                    break;
-                case 'sentiment':
-                    instruction = "Analyze the sentiment and public persona based on this intelligence. Is it professional, controversial, academic, or social-heavy? Provide a vibe check and key adjectives.";
-                    break;
-                case 'risk':
-                    instruction = "Audit this person's digital footprint for potential privacy risks. What information is highly exposed? What should they consider locking down? Be critical and helpful.";
-                    break;
-            }
-
-            try {
-                const data = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [
-                            { role: "user", parts: [{ text: `Here is the raw intelligence data:\n${rawIntelligence}` }] },
-                            { role: "user", parts: [{ text: instruction }] }
-                        ]
-                    })
-                });
-
-                const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "AI analysis failed.";
-                
-                // Prepend or replace? Let's prepend for context
-                const featureHeader = `<div class="bg-indigo-500/10 border-l-4 border-indigo-500 p-4 mb-6 rounded-r-xl">
-                    <h4 class="text-indigo-300 font-bold uppercase tracking-wider text-xs mb-2">✨ AI ${type.toUpperCase()} OUTPUT</h4>
-                    <div class="text-slate-200 italic">${aiResponse.replace(/\n/g, '<br>')}</div>
-                </div>`;
-                
-                summaryText.innerHTML = featureHeader + summaryText.innerHTML;
-                summaryText.scrollIntoView({ behavior: 'smooth' });
-
-            } catch (error) {
-                console.error(error);
-            } finally {
-                aiLoader.classList.add('hidden');
-                contentCard.classList.remove('ai-active');
+                setTimeout(() => statusMsg.classList.add('hidden'), 5000);
             }
         }
 
         function renderMarkdown(text) {
-            // Simple markdown parser for headers and bold
             let html = text
                 .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mt-8 mb-4">$1</h1>')
                 .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold mt-6 mb-3">$2</h2>')
                 .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold mt-4 mb-2">$3</h3>')
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em>$1</em>')
                 .replace(/\n/g, '<br>');
             summaryText.innerHTML = html;
         }
 
-        searchBtn.addEventListener('click', collectInfo);
-        copyBtn.addEventListener('click', () => {
-            const text = summaryText.innerText;
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            const originalText = copyBtn.querySelector('span').textContent;
-            copyBtn.querySelector('span').textContent = "Copied!";
-            setTimeout(() => copyBtn.querySelector('span').textContent = originalText, 2000);
-        });
+        async function runAIFeature(type) {
+            if (!rawIntelligence) return;
+            aiLoader.classList.remove('hidden');
+            contentCard.classList.add('ai-active');
+            let instruction = type === 'bio' ? "Write a professional bio." : type === 'sentiment' ? "Analyze persona sentiment." : "List privacy risks.";
+            try {
+                const data = await callGemini({
+                    contents: [
+                        { role: "user", parts: [{ text: `Data: ${rawIntelligence}` }] },
+                        { role: "user", parts: [{ text: instruction }] }
+                    ]
+                });
+                const res = data.candidates[0].content.parts[0].text;
+                summaryText.innerHTML = `<div class="bg-indigo-500/10 border-l-4 border-indigo-500 p-4 mb-6 rounded-r-xl italic">${res.replace(/\n/g, '<br>')}</div>` + summaryText.innerHTML;
+            } catch (e) { console.error(e); }
+            finally { aiLoader.classList.add('hidden'); contentCard.classList.remove('ai-active'); }
+        }
 
-        targetName.addEventListener('keypress', (e) => { if (e.key === 'Enter') collectInfo(); });
-        targetContext.addEventListener('keypress', (e) => { if (e.key === 'Enter') collectInfo(); });
+        searchBtn.addEventListener('click', collectInfo);
     </script>
 </body>
 </html>
